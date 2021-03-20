@@ -1,0 +1,16 @@
+Weekly Progress Report - 1
+
+Section 1: Activities and Progress
+
+1.1 Implementation/development progress
+
+Regarding the implementation aspects of this project, there has not been any significant progress, as we approached the first few weeks.  During this time our main focus was on understanding the requirements associated with this project. I took this time to familiarized myself with the domain knowledge and concepts that will be explored in this research project, specifically the underlying mechanism behind a cross-domain attack and what constitutes a vulnerability, and the fundamentals of deep learning(transfer learning). The starting point involved thoroughly reading through the article provided to us on slack by Yongzheng Xie, though there is a slight difference between the comparative study explored in the article and our project. In the article cross-domain defects are explored, however in our research project we want to evaluate methods for detecting vulnerabilities.
+
+
+ Section 2: Issues and Challenges
+ 
+My primary issue in regards to this project is my lack of domain knowledge in the field of machine learning due to having no prior exposure. This should not be a major issue as I am more than willing to learn as I go. Another issue I had encountered was understanding the approach to the replication of cross-domain vulnerability methods and the framework for evaluating said method.  Overall the main challenge will be the steep learning curve that I must overcome.
+
+Section 3: Implementation Goals
+
+We will continue to have regular weekly meetings within our group to ensure consistent progress is maintained throughout each iteration. I will continue to explore the concepts in transfer learning within deep learning. I will take a hands-on approach to learn the concepts by attempting to code a very simple deep learning algorithm as an example once my understanding is sufficient. Our group plans to have another meeting this Saturday to discuss the next steps of our projects from the outcome of our client meeting on Friday. During our meeting, we will allocate our 1st iteration task to our members according to our individual areas of expertise.  During that meeting, I will offer to work on the syntax tokenizing, abstract syntax tree parsing, and conversion to the training set due to having prior experience for those tasks.  For the moment I will continue to refine my understanding of the project  goals, objective, and the underlying domain knowledge required. I will go through the article again to separate the vulnerability subset from defections evaluation metrics.  
