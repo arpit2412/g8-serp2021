@@ -1,3 +1,0 @@
-Running command EXAMPLE
-
-java -jar CodeSensor.jar test/test.c > result/output.txt
