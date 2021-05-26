@@ -13,6 +13,17 @@ import pandas as pd
 import time
 import csv
 
+from keras.preprocessing import sequence
+from keras.models import Sequential
+from keras.layers import Dense, Dropout
+from keras.layers import Embedding, Bidirectional
+from keras.layers import LSTM
+from keras.callbacks import ModelCheckpoint, EarlyStopping
+from keras import backend as K
+
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import GridSearchCV
@@ -31,14 +42,23 @@ def getData(filePath):
     df = pd.read_csv(filePath, header=None, sep=",")
     
     df_list = df.values.tolist()
-    
-    return np.asarray(df_list)
+
+    temp = []
+    ####
+    for i in df_list:
+        # Get rid of 'NaN' values.
+        i = [x for x in i if str(x) != 'nan']
+        temp.append(i)
+    return temp
 
 def GenerateLabels(input_arr):
     temp_arr = []
     for func_id in input_arr:
         temp_sub_arr = []
+        ## if using dataset from POSTER paper, uncomment #60
+        ## if using dataset from Validation, uncomment #61
         if "cve" in func_id or "CVE" in func_id:
+        #if "VULN" in func_id:
             temp_sub_arr.append(1)
         else:
             temp_sub_arr.append(0)
@@ -50,21 +70,12 @@ def storeOuput(arr, path):
         wr = csv.writer(myfile)
         wr.writerow(arr)
 
-train_set_x = getData(working_dir + 'train_vlc_cm.csv')
-train_set_id = getData(working_dir + 'train_vlc_id.csv')
+train_set_x = getData(working_dir + 'train_cm.csv')
+train_set_id = getData(working_dir + 'train_id.csv')
 
-test_set_x = getData(working_dir + 'test_vlc_cm.csv')
-test_set_id = getData(working_dir + 'test_vlc_id.csv')
+test_set_x = getData(working_dir + 'test_cm.csv')
+test_set_id = getData(working_dir + 'test_id.csv')
 
-# max_len = 650  # Padding using the max_len of the provided AST.
-# sequence_pad1 = sequence.pad_sequences(train_set_x, maxlen=max_len, padding='post')
-# sequence_pad2 = sequence.pad_sequences(test_set_x, maxlen=max_len, padding='post')
-# # sequence_pad = sequence.pad_sequences(test_set_x, maxlen=max_len, padding='post')
-# print(sequence_pad1.shape)
-# print(sequence_pad1)
-# print(sequence_pad2.shape)
-# print(sequence_pad2)
-# # padded_inputs = tf.keras.preprocessing.sequence.pad_sequences(raw_inputs, padding="post")
 
 train_set_id = np.ndarray.flatten(np.asarray(train_set_id))
 test_set_id = np.ndarray.flatten(np.asarray(test_set_id))
@@ -74,6 +85,8 @@ test_set_y = GenerateLabels(test_set_id)
 
 train_set_y = np.ndarray.flatten(np.asarray(train_set_y))
 test_set_y = np.ndarray.flatten(np.asarray(test_set_y))
+
+
 
 print ("Training set: ")
 print (train_set_x)
@@ -85,13 +98,12 @@ print ("The length of training and testing sets: ")
 
 print (len(train_set_x), len(test_set_x), len(train_set_y), len(test_set_y))
 
-print ("-------------------------")
+# print ("-------------------------")
+# print ("The shape of the datasets: " + "\r\n")
 
-print ("The shape of the datasets: " + "\r\n")
+# print (train_set_x.shape, train_set_y.shape, test_set_x.shape, test_set_y.shape)
 
-#print (train_set_x.shape, train_set_y.shape, test_set_x.shape, test_set_y.shape)
-
-print (np.count_nonzero(train_set_y), np.count_nonzero(test_set_y))
+# print (np.count_nonzero(train_set_y), np.count_nonzero(test_set_y))
 
 # 2. Training RF parameters
 # -------------------------------------------------------
