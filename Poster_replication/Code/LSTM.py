@@ -24,7 +24,7 @@ script_start_time = time.time()
 
 print ("Script starts at: " + str(script_start_time))
 
-# The a CSV file which contains the extracted AST data. (The ASTs are tokenized, namely they have been mapped to integers.) 
+# The a CSV file which contains the extracted AST data. (The ASTs are tokenized, namely they have been mapped to integers.)
 csv_URL = 'csv data file path' # All the ASTs will be processed and converted to vectors and stored in a CSV file.
 
 working_dir = 'Save the result at this path'
@@ -37,22 +37,22 @@ def getData(filePath):
     df = pd.read_csv(filePath, sep=",")
 
     #id_cols = list(df['func_id'])
-    
+
     df_id = df['func_id']
-    
+
     df_value = df.drop(['func_id'], axis=1)
-    
+
     df_list = df_value.values.tolist()
-    
+
     df_id_list = df_id.values.tolist()
-    
+
     temp = []
     ####
     for i in df_list:
         # Get rid of 'NaN' values.
         i = [x for x in i if str(x) != 'nan']
         temp.append(i)
-    
+
     return temp, df_id_list
 
 # Generate the labels for samples according to the names of the samples.
@@ -71,10 +71,10 @@ def storeOuput(arr, path):
     with open(path, 'w') as myfile:
         wr = csv.writer(myfile)
         wr.writerow(arr)
-        
+
 # Generate the confusion matrix.
-# def confusion_mat(test_label, predicts):         
-      # precision_1, precision_0, recall_1, recall_0, f1, f0 = 0, 0, 0, 0, 0, 0    
+# def confusion_mat(test_label, predicts):
+      # precision_1, precision_0, recall_1, recall_0, f1, f0 = 0, 0, 0, 0, 0, 0
       # test_calss=[int(x) for x in (list(test_label))] #传入的是数组，转成数字列表
       # pred_class=[int(x) for x in (list(predicts))]
       # a,b,c,d=0,0,0,0
@@ -173,7 +173,7 @@ def display_activations(activation_maps):
             raise Exception('len(shape) = 3 has not been implemented.')
         plt.imshow(activations, interpolation='None', cmap='jet')
         plt.show()
-        
+
 # The function outputs a 3D array and store it in a txt file.
 # The arr is the array to be output.
 # The path specifies where the output file is stored.
@@ -183,40 +183,40 @@ def display_activations(activation_maps):
 #        # I'm writing a header here just for the sake of readability
 #        # Any line starting with "#" will be ignored by numpy.loadtxt
 #        outfile.write('# Array shape: {0}\n'.format(arr.shape))
-#    
+#
 #        # Iterating through a ndimensional array produces slices along
 #        # the last axis. This is equivalent to data[i,:,:] in this case
 #        for data_slice in arr:
-#    
+#
 #            # The formatting string indicates that I'm writing out
 #            # the values in left-justified columns 7 characters in width
-#            # with 2 decimal places.  
+#            # with 2 decimal places.
 #            np.savetxt(outfile, data_slice, fmt='%14.5f')
-#    
+#
 #            # Writing out a break to indicate different slices...
 #            outfile.write('# New slice\n')
-			
+
 #def storeOutput_3DArray_str(arr, path):
 #    # Write the array to disk
 #    with file(path, 'w') as outfile:
 #        # I'm writing a header here just for the sake of readability
 #        # Any line starting with "#" will be ignored by numpy.loadtxt
 #        outfile.write('# Array shape: {0}\n'.format(arr.shape))
-#    
+#
 #        # Iterating through a ndimensional array produces slices along
 #        # the last axis. This is equivalent to data[i,:,:] in this case
 #        for data_slice in arr:
-#    
+#
 #            # The formatting string indicates that I'm writing out
 #            # the values in left-justified columns 7 characters in width
-#            # with 2 decimal places.  
+#            # with 2 decimal places.
 #            np.savetxt(outfile, data_slice, fmt='%s')
-#    
+#
 #            # Writing out a break to indicate different slices...
 #            outfile.write('# New slice\n')
-            
+
 # ------------------------------------------------------------ #
-# 1. Give the data list which stores the training and testing sets of the extracted ASTs.    
+# 1. Give the data list which stores the training and testing sets of the extracted ASTs.
 
 data_list, data_id_list = getData(csv_URL)
 
@@ -224,12 +224,12 @@ print ("The length of the data list: " + str(len(data_list)))
 
 #4775
 
-#  0%    2.5%      5%    7.5%     10%   12.5%     15%   17.5%     20%   22.5%     25%   27.5%     30%   32.5%     35%   37.5% 
-#  15.00   20.00   23.00   25.00   28.00   30.00   33.00   35.00   37.00   40.00   42.00   45.00   47.00   50.00   53.00   56.00 
-#    40%   42.5%     45%   47.5%     50%   52.5%     55%   57.5%     60%   62.5%     65%   67.5%     70%   72.5%     75%   77.5% 
-#  59.00   63.00   67.00   71.00   75.00   80.00   85.00   90.00   96.40  103.00  111.00  119.00  129.00  139.00  153.00  169.00 
-#    80%   82.5%     85%   87.5%     90%   92.5%     95%   97.5%    100% 
-# 186.00  206.00  227.90  255.00  287.60  346.95  433.00  624.60 2876.00 
+#  0%    2.5%      5%    7.5%     10%   12.5%     15%   17.5%     20%   22.5%     25%   27.5%     30%   32.5%     35%   37.5%
+#  15.00   20.00   23.00   25.00   28.00   30.00   33.00   35.00   37.00   40.00   42.00   45.00   47.00   50.00   53.00   56.00
+#    40%   42.5%     45%   47.5%     50%   52.5%     55%   57.5%     60%   62.5%     65%   67.5%     70%   72.5%     75%   77.5%
+#  59.00   63.00   67.00   71.00   75.00   80.00   85.00   90.00   96.40  103.00  111.00  119.00  129.00  139.00  153.00  169.00
+#    80%   82.5%     85%   87.5%     90%   92.5%     95%   97.5%    100%
+# 186.00  206.00  227.90  255.00  287.60  346.95  433.00  624.60 2876.00
 
 # ------------------------------------------------------------ #
 # 2. Do the padding -- using the function provided by Keras
@@ -244,9 +244,9 @@ print (data_id_list)
 # ------------------------------------------------------------ #
 # 3. Split the data into 3 parts: training, validation and testing.
 
-# Use the id as the 'test' set because the id contains the 'cve' keyword which can be used as the label later. 
-# When the samples in the train_set_x are 
-train_set_x, test_validation_set_x, train_set_y_id, test_validation_set_y = train_test_split(sequence_pad, data_id_list, test_size=0.35, random_state=42) 
+# Use the id as the 'test' set because the id contains the 'cve' keyword which can be used as the label later.
+# When the samples in the train_set_x are
+train_set_x, test_validation_set_x, train_set_y_id, test_validation_set_y = train_test_split(sequence_pad, data_id_list, test_size=0.35, random_state=42)
 
 print ("The training set: ")
 print (train_set_x)
@@ -255,8 +255,8 @@ print (train_set_x)
 
 print ("The length of training set: " + str(len(train_set_x)) + ". The length of training set id list: " +  str(len(train_set_y_id)))
 
-# Further split the data set into two parts, to form training, validation and testing parts with the ratio of 0.65:0.2:0.15 
-validation_set_x, test_set_x, validation_set_id, test_set_id = train_test_split(test_validation_set_x, test_validation_set_y, test_size=0.43, random_state=42) 
+# Further split the data set into two parts, to form training, validation and testing parts with the ratio of 0.65:0.2:0.15
+validation_set_x, test_set_x, validation_set_id, test_set_id = train_test_split(test_validation_set_x, test_validation_set_y, test_size=0.43, random_state=42)
 
 print ("The validation set: ")
 print (validation_set_x)
@@ -321,7 +321,7 @@ callbacks_list = [
 print ("start training the model...")
 
 # ------------------------------------------------------------ #
-# 6. Train the model. 
+# 6. Train the model.
 model.fit(train_set_x, train_set_y,
           epochs=EPOCHS,
           batch_size=BATCH_SIZE,
@@ -333,7 +333,7 @@ model.fit(train_set_x, train_set_y,
 
 # ------------------------------------------------------------ #
 # 7. Acquire the layer outputs using the trained model and the training data.
-output_of_layers = get_activations(model, train_set_x, print_shape_only=True)
+# output_of_layers = get_activations(model, train_set_x, print_shape_only=True)
 
 #output_of_layers = np.asarray(output_of_layers)
 
@@ -346,94 +346,94 @@ model.summary()
 
 print ("\n\r")
 
-# Because the model contains 4 defined layers, the output_of_layers should contain 4 sub_arrays, each of which represents a layer of output.
-print ("Layer 0: " + "\n\r")
-
-layer_one = output_of_layers[0]
-
-layer_one = np.asarray(layer_one)
-
-print (layer_one.shape)
-
-print (layer_one)
-
-print ("Layer 1: " + "\n\r")
-
-layer_two = output_of_layers[1]
-
-layer_two = np.asarray(layer_two)
-
-print (layer_two.shape)
-
-print (layer_two)
-
-print ("Layer 2: " + "\n\r")
-
-layer_three = output_of_layers[2]
-
-layer_three = np.asarray(layer_three)
-
-print (layer_three.shape)
-
-print (layer_three)
-
-print ("Layer 3: " + "\n\r")
-
-layer_four = output_of_layers[3]
-
-layer_four = np.asarray(layer_four)
-
-print (layer_four.shape)
-
-print (layer_four)
-
-print ("Layer 4: " + "\n\r")
-
-layer_five = output_of_layers[4]
-
-layer_five = np.asarray(layer_five)
-
-print (layer_five.shape)
-
-# ------------------------------------------------------------ #
-# 8. Store the output of the second last layer.
-
-# Convert the id list to an array.
-train_set_y_id = np.asarray(train_set_y_id)
-
-# Reshape the id array so that it can be used for output to a txt file.
-train_set_y_id = train_set_y_id.reshape(len(train_set_y_id), 1)
-
-#storeOutput_3DArray_str(train_set_y_id, "All_layers_output_ids_4.txt")
-
-print ("Saving the layer outputs...")
-
-# For 3D arrays, they can only be saved in a txt file with a transformed format.
-# storeOutput_3DArray(layer_one, "layer_1_output_1.txt") # Too big...
-# storeOutput_3DArray(layer_two, "layer_2_output_1.txt")
-# storeOutput_3DArray(layer_three, "layer_3_output_1.txt")
-# storeOutput_3DArray(layer_four, "layer_4_output_1.txt")
-#np.savetxt("layer_1_output_1.csv", layer_one, delimiter=",")
-#np.savetxt("layer_2_output_1.csv", layer_two, delimiter=",")
-
-# For 2D arrays, they can be saved in csv files.
-#np.savetxt("layer_3_output_4.csv", layer_three, delimiter=",")
-#np.savetxt("layer_4_output_4.csv", layer_four, delimiter=",")
-
-#storeOutput_3DArray(output_of_layers, "All_layers_output.txt")
-print ("-----------------------------------------------")
-
-print ("Start predicting....")
-
-# The 0 or 1 outputs. 0 means non-vulnerable and 1 means vulnerable.
-predicted_classes = model.predict_classes(test_set_x, batch_size=BATCH_SIZE, verbose=2)
-
-predicted_prob =  model.predict(test_set_x, batch_size=BATCH_SIZE, verbose=2)
-#print "The predicted class results: \r\n"
-#print "The number of testing samples is: " + str(len(predicted_classes)) + "\r\n"
-#print predicted_classes
-
-test_accuracy = np.mean(np.equal(test_set_y, predicted_classes))
+# # Because the model contains 4 defined layers, the output_of_layers should contain 4 sub_arrays, each of which represents a layer of output.
+# print ("Layer 0: " + "\n\r")
+#
+# layer_one = output_of_layers[0]
+#
+# layer_one = np.asarray(layer_one)
+#
+# print (layer_one.shape)
+#
+# print (layer_one)
+#
+# print ("Layer 1: " + "\n\r")
+#
+# layer_two = output_of_layers[1]
+#
+# layer_two = np.asarray(layer_two)
+#
+# print (layer_two.shape)
+#
+# print (layer_two)
+#
+# print ("Layer 2: " + "\n\r")
+#
+# layer_three = output_of_layers[2]
+#
+# layer_three = np.asarray(layer_three)
+#
+# print (layer_three.shape)
+#
+# print (layer_three)
+#
+# print ("Layer 3: " + "\n\r")
+#
+# layer_four = output_of_layers[3]
+#
+# layer_four = np.asarray(layer_four)
+#
+# print (layer_four.shape)
+#
+# print (layer_four)
+#
+# print ("Layer 4: " + "\n\r")
+#
+# layer_five = output_of_layers[4]
+#
+# layer_five = np.asarray(layer_five)
+#
+# print (layer_five.shape)
+#
+# # ------------------------------------------------------------ #
+# # 8. Store the output of the second last layer.
+#
+# # Convert the id list to an array.
+# train_set_y_id = np.asarray(train_set_y_id)
+#
+# # Reshape the id array so that it can be used for output to a txt file.
+# train_set_y_id = train_set_y_id.reshape(len(train_set_y_id), 1)
+#
+# #storeOutput_3DArray_str(train_set_y_id, "All_layers_output_ids_4.txt")
+#
+# print ("Saving the layer outputs...")
+#
+# # For 3D arrays, they can only be saved in a txt file with a transformed format.
+# # storeOutput_3DArray(layer_one, "layer_1_output_1.txt") # Too big...
+# # storeOutput_3DArray(layer_two, "layer_2_output_1.txt")
+# # storeOutput_3DArray(layer_three, "layer_3_output_1.txt")
+# # storeOutput_3DArray(layer_four, "layer_4_output_1.txt")
+# #np.savetxt("layer_1_output_1.csv", layer_one, delimiter=",")
+# #np.savetxt("layer_2_output_1.csv", layer_two, delimiter=",")
+#
+# # For 2D arrays, they can be saved in csv files.
+# #np.savetxt("layer_3_output_4.csv", layer_three, delimiter=",")
+# #np.savetxt("layer_4_output_4.csv", layer_four, delimiter=",")
+#
+# #storeOutput_3DArray(output_of_layers, "All_layers_output.txt")
+# print ("-----------------------------------------------")
+#
+# print ("Start predicting....")
+#
+# # The 0 or 1 outputs. 0 means non-vulnerable and 1 means vulnerable.
+# predicted_classes = model.predict_classes(test_set_x, batch_size=BATCH_SIZE, verbose=2)
+#
+# predicted_prob =  model.predict(test_set_x, batch_size=BATCH_SIZE, verbose=2)
+# #print "The predicted class results: \r\n"
+# #print "The number of testing samples is: " + str(len(predicted_classes)) + "\r\n"
+# #print predicted_classes
+#
+# test_accuracy = np.mean(np.equal(test_set_y, predicted_classes))
 
 #confidence_sets_1 = model.predict(test_set_x, batch_size=BATCH_SIZE, verbose=2)
 
@@ -471,7 +471,7 @@ print ("Start saving the trained model...")
 model.save_weights(model_saved_path + time.strftime("%c") + '_weights.h5')
 
 target_names = ["Non-vulnerable","Vulnerable"] #non-vulnerable->0, vulnerable->1
-print (confusion_matrix(test_set_y, predicted_classes, labels=[0,1]))   
+print (confusion_matrix(test_set_y, predicted_classes, labels=[0,1]))
 print ("\r\n")
 print ("\r\n")
 print (classification_report(test_set_y, predicted_classes, target_names=target_names))
@@ -480,7 +480,7 @@ print (classification_report(test_set_y, predicted_classes, target_names=target_
 np.savetxt(working_dir + 'Result_probabilities.csv', predicted_prob, delimiter=",")
 np.savetxt(working_dir + 'test_label.csv', test_set_y, delimiter=",")
 storeOuput(test_set_id, working_dir + 'test_id.csv')
-	
+
 print ("\r\n")
 print ("--- %s seconds ---" + str((time.time() - script_start_time)))
 
