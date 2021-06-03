@@ -56,6 +56,16 @@ train_set_id = getData(working_dir + 'train_vlc_id.csv')
 test_set_x = getData(working_dir + 'test_vlc_cm.csv')
 test_set_id = getData(working_dir + 'test_vlc_id.csv')
 
+# max_len = 650  # Padding using the max_len of the provided AST.
+# sequence_pad1 = sequence.pad_sequences(train_set_x, maxlen=max_len, padding='post')
+# sequence_pad2 = sequence.pad_sequences(test_set_x, maxlen=max_len, padding='post')
+# # sequence_pad = sequence.pad_sequences(test_set_x, maxlen=max_len, padding='post')
+# print(sequence_pad1.shape)
+# print(sequence_pad1)
+# print(sequence_pad2.shape)
+# print(sequence_pad2)
+# # padded_inputs = tf.keras.preprocessing.sequence.pad_sequences(raw_inputs, padding="post")
+
 train_set_id = np.ndarray.flatten(np.asarray(train_set_id))
 test_set_id = np.ndarray.flatten(np.asarray(test_set_id))
 
