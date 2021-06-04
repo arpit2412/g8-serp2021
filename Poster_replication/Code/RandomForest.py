@@ -55,8 +55,10 @@ def GenerateLabels(input_arr):
     temp_arr = []
     for func_id in input_arr:
         temp_sub_arr = []
-
+        ## if using dataset from POSTER paper, uncomment #60
+        ## if using dataset from Validation, uncomment #61
         if "cve" in func_id or "CVE" in func_id:
+        #if "VULN" in func_id:
             temp_sub_arr.append(1)
         else:
             temp_sub_arr.append(0)
