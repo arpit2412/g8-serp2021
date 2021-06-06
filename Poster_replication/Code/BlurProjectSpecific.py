@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Oct  7 20:36:39 2017
-
-@author: yuyu-
 
 """
 
@@ -180,9 +177,9 @@ def mapNodesToNumber(element):
         if element == "\n":
             return "84" # Specifying the ending of each function.
         else:
-            return "83" # proj_specific type 
-        
-f = open(File_path + "_proASTResult_DFT.txt")
+            return "83" # proj_specific type
+
+f = open(File_path + "_proASTResult_DFT1.txt")
 
 bigLines = []
 newBigLines = ""
@@ -198,15 +195,15 @@ try:
                 if index == 0:
                     lines.append(subLine[0]) # The first element is the function name.
                 else:
-                    lines.append(mapNodesToNumber(item))  
+                    lines.append(mapNodesToNumber(item))
             newSubLine = ','.join(lines)
-            #newSubLine = newSubLine + "\n"
         bigLines.append(newSubLine)
     newBigLines = '\n'.join(bigLines)
-        
+
 finally:
     f.close()
-    
+
 f1 = open(File_path + "_proASTResult_num_DFT.txt", "w")
 f1.write(newBigLines)
+print("Textual vectors to Numeric vectors - Done")
 f1.close()
