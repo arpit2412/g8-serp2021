@@ -334,18 +334,18 @@ model.fit(train_set_x, train_set_y,
 # ------------------------------------------------------------ #
 # 7. Acquire the layer outputs using the trained model and the training data.
 # output_of_layers = get_activations(model, train_set_x, print_shape_only=True)
-#
-# #output_of_layers = np.asarray(output_of_layers)
-#
-# # If possible, visualize the outputs.
-# #display_activations(output_of_layers)
-#
+
+#output_of_layers = np.asarray(output_of_layers)
+
+# If possible, visualize the outputs.
+#display_activations(output_of_layers)
+
 print ("The details of the model: " + "\n\r")
 
 model.summary()
 
 print ("\n\r")
-#
+
 # # Because the model contains 4 defined layers, the output_of_layers should contain 4 sub_arrays, each of which represents a layer of output.
 # print ("Layer 0: " + "\n\r")
 #
@@ -407,33 +407,33 @@ print ("\n\r")
 # #storeOutput_3DArray_str(train_set_y_id, "All_layers_output_ids_4.txt")
 #
 # print ("Saving the layer outputs...")
-
-# For 3D arrays, they can only be saved in a txt file with a transformed format.
-# storeOutput_3DArray(layer_one, "layer_1_output_1.txt") # Too big...
-# storeOutput_3DArray(layer_two, "layer_2_output_1.txt")
-# storeOutput_3DArray(layer_three, "layer_3_output_1.txt")
-# storeOutput_3DArray(layer_four, "layer_4_output_1.txt")
-#np.savetxt("layer_1_output_1.csv", layer_one, delimiter=",")
-#np.savetxt("layer_2_output_1.csv", layer_two, delimiter=",")
-
-# For 2D arrays, they can be saved in csv files.
-#np.savetxt("layer_3_output_4.csv", layer_three, delimiter=",")
-#np.savetxt("layer_4_output_4.csv", layer_four, delimiter=",")
-
-#storeOutput_3DArray(output_of_layers, "All_layers_output.txt")
-print ("-----------------------------------------------")
-
-print ("Start predicting....")
-
-# The 0 or 1 outputs. 0 means non-vulnerable and 1 means vulnerable.
-predicted_classes = model.predict_classes(test_set_x, batch_size=BATCH_SIZE, verbose=2)
-
-predicted_prob =  model.predict(test_set_x, batch_size=BATCH_SIZE, verbose=2)
-#print "The predicted class results: \r\n"
-#print "The number of testing samples is: " + str(len(predicted_classes)) + "\r\n"
-#print predicted_classes
-
-test_accuracy = np.mean(np.equal(test_set_y, predicted_classes))
+#
+# # For 3D arrays, they can only be saved in a txt file with a transformed format.
+# # storeOutput_3DArray(layer_one, "layer_1_output_1.txt") # Too big...
+# # storeOutput_3DArray(layer_two, "layer_2_output_1.txt")
+# # storeOutput_3DArray(layer_three, "layer_3_output_1.txt")
+# # storeOutput_3DArray(layer_four, "layer_4_output_1.txt")
+# #np.savetxt("layer_1_output_1.csv", layer_one, delimiter=",")
+# #np.savetxt("layer_2_output_1.csv", layer_two, delimiter=",")
+#
+# # For 2D arrays, they can be saved in csv files.
+# #np.savetxt("layer_3_output_4.csv", layer_three, delimiter=",")
+# #np.savetxt("layer_4_output_4.csv", layer_four, delimiter=",")
+#
+# #storeOutput_3DArray(output_of_layers, "All_layers_output.txt")
+# print ("-----------------------------------------------")
+#
+# print ("Start predicting....")
+#
+# # The 0 or 1 outputs. 0 means non-vulnerable and 1 means vulnerable.
+# predicted_classes = model.predict_classes(test_set_x, batch_size=BATCH_SIZE, verbose=2)
+#
+# predicted_prob =  model.predict(test_set_x, batch_size=BATCH_SIZE, verbose=2)
+# #print "The predicted class results: \r\n"
+# #print "The number of testing samples is: " + str(len(predicted_classes)) + "\r\n"
+# #print predicted_classes
+#
+# test_accuracy = np.mean(np.equal(test_set_y, predicted_classes))
 
 #confidence_sets_1 = model.predict(test_set_x, batch_size=BATCH_SIZE, verbose=2)
 
