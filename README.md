@@ -1,4 +1,6 @@
-# g8-serp2021
+## SERP Project 8 - Evaluating Cross Domain Vulnerability Detection Methods
+
+This project explores evaluating various deep learning based cross-project vulnerability detection methods. Methods from different research papers will be replicated to provide a baseline for our evaluation framework. Papers, code, and feature extraction tools will be provided below.
 
 Tools will be used in the Project
 
