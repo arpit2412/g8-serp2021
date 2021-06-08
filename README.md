@@ -6,11 +6,11 @@ This project explores evaluating various deep learning based cross-project vulne
 
 ### Understand by SciTools
 Understand is a commercial code enhancement tool for extracting function-level code metrics.<br />
-source: [[https://www.scitools.com/]](https://www.scitools.com/)
+#### Source: [https://www.scitools.com/](https://www.scitools.com/)<br /><br />
 
-### Understand by SciTools
+### CodeSensor (version 2.0)
 CodeSensor is a robust code to Abstract Syntax Tree(AST) parser implemented by based on the concept of island grammars.<br />
-repository: [[https://github.com/fabsx00/codesensor]](https://github.com/fabsx00/codesensor)
+#### Source: [https://github.com/fabsx00/codesensor](https://github.com/fabsx00/codesensor)<br /><br />
 
 POSTER: Vulnerability Discovery with Function Representation Learning from Unlabeled Projects 
 
