@@ -14,7 +14,8 @@ CodeSensor is a robust code to Abstract Syntax Tree(AST) parser implemented by b
 
 ## Papers Replicated
 ### POSTER: Vulnerability Discovery with Function Representation Learning from Unlabeled Projects 
-This project explores using function-level vulnerability discovery within a cross-project scope. The AST representation will be the training data used for a bidirectional LSTM neural network. The function level representation model machine learning model has demonstrated significant performance gains.<br />
+This project explores using function-level vulnerability discovery within a cross-project scope. The AST representation will be the training data used for a bidirectional LSTM neural network. Typical Recurrent neural networks have difficulties in capturing long term dependencies regarding continuous and fragment elements associated with vulnerability therefore the method combines RNN with LSTM cells to handle the vulnerabilities with long term dependencies  spanning multiple lines of code. The function level representation model machine learning model has demonstrated significant performance gains
+<br />
 #### Paper: [https://dl.acm.org/doi/abs/10.1145/3133956.3138840](https://dl.acm.org/doi/abs/10.1145/3133956.3138840)
 #### Source code: [https://github.com/DanielLin1986/function_representation_learning](https://github.com/DanielLin1986/function_representation_learning)
 #### Results: 
