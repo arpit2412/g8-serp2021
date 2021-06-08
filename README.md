@@ -19,3 +19,11 @@ This project explores using function-level vulnerability discovery within a cros
 #### Paper: [https://dl.acm.org/doi/abs/10.1145/3133956.3138840](https://dl.acm.org/doi/abs/10.1145/3133956.3138840)
 #### Source code: [https://github.com/DanielLin1986/function_representation_learning](https://github.com/DanielLin1986/function_representation_learning)
 #### Results: 
+
+### Software Vulnerability Discovery via Learning Multi-domain Knowledge Bases 
+A framework is proposed to address the underlying issues regarding automated vulnerability discovery. The framework incorporates transferable knowledge from preexisting data sources that could be applied to real-world vulnerability detection. The method addresses the issue regarding the shortage of labeled data for model training by using cross domain vulnerability relevant data from past vulnerabilities from multiple open source projects and Software Assurance Reference Database (SARD) with examples of artificial  vulnerabilities samples.  2 LSTM networks will be used from training each type of data set independently and the separate representation will be combined and trained using a random forest classifler to enhance detection capabilities.  
+<br />
+#### Paper: [https://ieeexplore.ieee.org/abstract/document/8906156](https://ieeexplore.ieee.org/abstract/document/8906156)
+#### Source code: [https://github.com/DanielLin1986/RepresentationsLearningFromMulti_domain](https://github.com/DanielLin1986/RepresentationsLearningFromMulti_domain)
+#### Results: 
+
