@@ -10,7 +10,7 @@ Understand is a commercial code enhancement tool for extracting function-level c
 
 ### CodeSensor (version 2.0)
 CodeSensor is a robust code to Abstract Syntax Tree(AST) parser implemented by based on the concept of island grammars.<br />
-#### Source: [https://github.com/fabsx00/codesensor](https://github.com/fabsx00/codesensor)<br /><br />
+#### Source: [https://github.com/fabsx00/codesensor](https://github.com/fabsx00/codesensor)<br /><br /><br />
 
 ## Papers Replicated
 ### POSTER: Vulnerability Discovery with Function Representation Learning from Unlabeled Projects 
