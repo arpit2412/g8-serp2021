@@ -18,4 +18,3 @@ This project explores using function-level vulnerability discovery within a cros
 #### Paper: [https://dl.acm.org/doi/abs/10.1145/3133956.3138840](https://dl.acm.org/doi/abs/10.1145/3133956.3138840)
 #### Source code: [https://github.com/DanielLin1986/function_representation_learning](https://github.com/DanielLin1986/function_representation_learning)
 #### Results: 
-**added results here table or graph**
