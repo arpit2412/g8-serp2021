@@ -25,4 +25,15 @@ A framework is proposed to address the underlying issues regarding automated vul
 #### Paper: [https://ieeexplore.ieee.org/abstract/document/8906156](https://ieeexplore.ieee.org/abstract/document/8906156)
 #### Source code: [https://github.com/DanielLin1986/RepresentationsLearningFromMulti_domain](https://github.com/DanielLin1986/RepresentationsLearningFromMulti_domain)
 #### Results: 
+TBA
+
+
+### Cross-project transfer representation learning for vulnerable function discovery 
+A data driven method for transfer learning in vulnerability discovery is used to derive an optimal balance between feature quantity and the degree of generalizability. Code semantics are obtained from a serialized AST data represenation of vulnerable and non-vulnerable source code. The AST is used as training data for a bidirectional LSTM deep learning classifier to obtain a model representation of software vulnerabilities. Data is collected from 6 open source projects. A framework is developed for evaluating 6 neural network models. Top-K percentage Precision is used as performance metrics. 
+#### Paper: [https://ieeexplore.ieee.org/abstract/document/8329207](https://ieeexplore.ieee.org/abstract/document/8329207)
+#### Source code: [https://github.com/DanielLin1986/TransferRepresentationLearning](https://github.com/DanielLin1986/TransferRepresentationLearning)
+#### Results: 
+TBA
+
+
 
