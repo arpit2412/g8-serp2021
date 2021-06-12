@@ -41,5 +41,13 @@ A data-driven method is devised using a 5-layer network architecture for transfe
 #### Results: 
 TBA<br /><br />
 
+### SySeVR: A Framework for Using Deep Learning to Detect Software Vulnerabilities
+A data-driven method is devised using a 5-layer network architecture for transfer representation learning. A benchmarking framework is developed for building and testing deep-learning based vulnerability detectors. Data set is collected from open-source software projects consisting of 1,471 vulnerable functions and 1,320 vulnerable files. Researchers can establish a vulnerability detection baseline system for the evaluation of different methods. 
+#### Paper: [https://ieeexplore.ieee.org/abstract/document/9321538](https://ieeexplore.ieee.org/abstract/document/9321538)
+#### Source code: [https://github.com/SySeVR/SySeVR](https://github.com/SySeVR/SySeVR)
+#### Results: 
+TBA<br /><br />
+
+
 
 
