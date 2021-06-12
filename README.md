@@ -41,12 +41,18 @@ A data-driven method is devised using a 5-layer network architecture for transfe
 #### Results: 
 TBA<br /><br />
 
+## Validation Data
+
 ### SySeVR: A Framework for Using Deep Learning to Detect Software Vulnerabilities
-A data-driven method is devised using a 5-layer network architecture for transfer representation learning. A benchmarking framework is developed for building and testing deep-learning based vulnerability detectors. Data set is collected from open-source software projects consisting of 1,471 vulnerable functions and 1,320 vulnerable files. Researchers can establish a vulnerability detection baseline system for the evaluation of different methods. 
+126 types of vulnerabilities within source code, were collected from the National Vulnerability Database (NVD) and the Software Assurance Reference Dataset (SARD). The NVD datas set contains vulnerabilities form 29 open source software projects. The SARD dataset contains 13,906 vulnerable C/C++ programs out of a total of 14,000. Vulnerable data represenations are aimmed to accommodate both syntax and semantic information by introducing the notion of: 
+- Syntax-based Vulnerability Candidates (SyVCs)  
+- Semantics-based Vulnerability Candidates (SeVCs) 
+ 
+ A program as a whole is divided into statements that correspond to “region proposals” and display the syntax and semantics characteristics of vulnerabilities. SyVCs are represenatative of vulnerability syntax characteristics, and is extended upon by SeVCs for accommodating the semantic information due to the presence of data dependency and control dependency.
+
 #### Paper: [https://ieeexplore.ieee.org/abstract/document/9321538](https://ieeexplore.ieee.org/abstract/document/9321538)
-#### Source code: [https://github.com/SySeVR/SySeVR](https://github.com/SySeVR/SySeVR)
-#### Results: 
-TBA<br /><br />
+#### Vulnerable data: [https://github.com/SySeVR/SySeVR/tree/master/Program%20data](https://github.com/SySeVR/SySeVR/tree/master/Program%20data)
+<br /><br />
 
 ## System Design/Requirements
 ![screenshot](https://github.com/arpit2412/g8-serp2021/blob/David-documents/resource/system_design.png)<br /><br />
