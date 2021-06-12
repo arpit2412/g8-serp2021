@@ -48,6 +48,8 @@ A data-driven method is devised using a 5-layer network architecture for transfe
 #### Results: 
 TBA<br /><br />
 
+## System Design/Requirements
+![screenshot](https://github.com/arpit2412/g8-serp2021/blob/David-documents/resource/system_design.png)<br /><br />
 
 
 
