@@ -2,7 +2,7 @@
 
 This project explores evaluating various deep learning based cross-project vulnerability detection methods. Methods from different research papers will be replicated to provide a baseline for our evaluation framework. Our framework will be reproducible and can be adopted into future reseach for determining the optimum vulnerability detection method. Research papers(scope), source code, and feature extraction tools will be provided within this repository.<br /><br />
 
-## Papers Replicated
+## Papers Replicated/scope
 ### POSTER: Vulnerability Discovery with Function Representation Learning from Unlabeled Projects 
 This project explores using function-level vulnerability discovery within a cross-project scope. The AST representation will be the training data used for a bidirectional LSTM neural network. Typical Recurrent neural networks have difficulties in capturing long term dependencies regarding continuous and fragment elements associated with vulnerability therefore the method combines RNN with LSTM cells to handle the vulnerabilities with long term dependencies  spanning multiple lines of code. The function level representation model machine learning model has demonstrated significant performance gains
 #### Paper: [https://dl.acm.org/doi/abs/10.1145/3133956.3138840](https://dl.acm.org/doi/abs/10.1145/3133956.3138840)
@@ -61,6 +61,14 @@ TBA<br /><br />
 
 ## System Design/Requirements
 ![screenshot](https://github.com/arpit2412/g8-serp2021/blob/David-documents/resource/system_design.png)<br /><br />
+
+## Future Work
+1. Our end goal is to finish replicating all methods from our scope. Our scope is expected to change as we may choose to add or remove research papers. We may eliminate papers from our scope where similarities in the underlying process are found to correspond with a different paper within our scope. We will add reseach papers based on their unique apporach to project vulnerability detection.  
+
+2. For our the replication of the first paper we used Top K to measure the accuracy of the deep learning method. Once all the reseach papers from within our scope have been successfully replicated we will establish an evaluation criteria for measuring the performance and accuracy of our various models. 
+
+3. lastly once performance evaluation has been completed we will design a reusable framework so others could replicate our process and produce similair results. Our framwork will contain a interface for submitting results therefore a comprehensive report could be generated for drawing comparisons between different models, allowing careful selection of the most optimal vulnerability detection method.
+
 
 
 
