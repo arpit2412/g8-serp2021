@@ -67,4 +67,4 @@ TBA<br /><br />
 
 2. For the replication of the first paper we used Top K to measure the accuracy of the deep learning method. Once all the research papers from within our scope have been successfully replicated we will establish evaluation criteria for measuring the performance and accuracy of our various models. 
 
-3. lastly once performance evaluation has been completed we will design a reusable framework so others could replicate our process and produce similar results. Our framework will contain an interface for submitting results therefore a comprehensive report could be generated for drawing comparisons between different models, allowing careful selection of the most optimal vulnerability detection method.
+3. Lastly, once performance evaluation has been completed we will design a reusable framework so others could replicate our process and produce similar results. Our framework will contain an interface for submitting results therefore a comprehensive report could be generated for drawing comparisons between different models, allowing careful selection of the most optimal vulnerability detection method.
