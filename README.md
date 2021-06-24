@@ -60,7 +60,7 @@ TBA<br /><br />
 <br /><br />
 
 ## System Design/Requirements
-![screenshot](https://github.com/arpit2412/g8-serp2021/blob/David-documents/resource/system_design.png)<br /><br />
+![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/resource/system%20design.png)<br /><br />
 
 ## Future Work
 1. Our end goal is to finish replicating all methods from our scope. Our scope is expected to change as we may choose to add or remove research papers. We may eliminate papers from our scope where similarities in the underlying process are found to correspond with a different paper within our scope. We will add research papers based on their unique approach to project vulnerability detection.  
