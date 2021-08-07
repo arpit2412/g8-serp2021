@@ -200,7 +200,7 @@ def train_and_evaluate(training_mode, p_lr, p_d_rate, p_num_hidden, verbose=True
 
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True
-
+    # saver = tf.train.Saver()
     with tf.Session(config=config) as sess:
         # check whether we have the model trained or not
         check_point = tf.train.get_checkpoint_state(saved_dir)
@@ -322,6 +322,9 @@ def train_and_evaluate(training_mode, p_lr, p_d_rate, p_num_hidden, verbose=True
                         print('t_fpr: %f; t_fnr: %f; t_tpr: %f; t_p: %f; t_f_1: %f' % (t_fpr, t_fnr, t_tpr, t_p, t_f_1))
                         result_file.write('t_fpr: %f; t_fnr: %f; t_tpr: %f; t_p: %f; t_f_1: %f \n' % (t_fpr, t_fnr, t_tpr,
                                                                                                   t_p, t_f_1))
+        #save models into the corresponding path
+        save_path = model.saver.save(sess, saved_dir+'/model.ckpt')
+        print("Model saved in file: %s" % save_path)
 
         if h_value != 0.0:
             high_values.append(h_value)
