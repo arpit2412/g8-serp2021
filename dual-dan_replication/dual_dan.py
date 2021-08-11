@@ -434,6 +434,9 @@ def train_and_evaluate(training_mode, an_pha, rate_d, rate_mc, rate_con,
                         result_file.write('fpr: %.5f ; fnr: %.5f ; trg_test_acc: %.5f ; trg_test_pre: %.5f ; trg_test_f1: %.5f '
                           '; trg_test_re: %.5f ; trg_test_auc: %.5f \n' % (fpr, fnr, trg_test_acc, trg_test_pre,
                                                                         trg_test_f1, trg_test_re, trg_test_auc))
+                        #save the best models into the corresponding path
+                        save_path = model.saver.save(sess, saved_dir+'/model.ckpt')
+                        print("Model saved in file: %s" % save_path)                                                
 
         if h_value != 0.0:
             high_values.append(h_value)

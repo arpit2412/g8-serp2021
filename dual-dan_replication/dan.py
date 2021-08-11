@@ -317,14 +317,15 @@ def train_and_evaluate(training_mode, p_lr, p_d_rate, p_num_hidden, verbose=True
                             print('t_n_acc: %f; t_v_acc: %f' % (float(t_c_n_acc) / t_s_n_acc, float(t_c_v_acc) / t_s_v_acc))
                             result_file.write('t_n_acc: %f; t_v_acc: %f \n' % (float(t_c_n_acc) / t_s_n_acc,
                                                                            float(t_c_v_acc) / t_s_v_acc))
+                            #save the best models into the corresponding path
+                            save_path = model.saver.save(sess, saved_dir+'/model.ckpt')
+                            print("Model saved in file: %s" % save_path)
                         else:
                             print('accuracy divide by zero')
                         print('t_fpr: %f; t_fnr: %f; t_tpr: %f; t_p: %f; t_f_1: %f' % (t_fpr, t_fnr, t_tpr, t_p, t_f_1))
                         result_file.write('t_fpr: %f; t_fnr: %f; t_tpr: %f; t_p: %f; t_f_1: %f \n' % (t_fpr, t_fnr, t_tpr,
                                                                                                   t_p, t_f_1))
-        #save models into the corresponding path
-        save_path = model.saver.save(sess, saved_dir+'/model.ckpt')
-        print("Model saved in file: %s" % save_path)
+
 
         if h_value != 0.0:
             high_values.append(h_value)
