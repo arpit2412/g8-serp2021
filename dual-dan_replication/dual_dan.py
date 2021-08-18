@@ -26,6 +26,7 @@ hour = time.strftime('%h')
 
 class DomainModel(object):
     """dual domain adaptation model."""
+
     def __init__(self, hidden_rnn):
         self._build_model(hidden_rnn)
 
@@ -117,11 +118,11 @@ class DomainModel(object):
 
         tf.reset_default_graph()
 
-        self.X_st = tf.placeholder(tf.float32, shape=(tbs//2, time_steps, num_input_vocabulary))
-        self.X_ts = tf.placeholder(tf.float32, shape=(tbs//2, time_steps, num_input_vocabulary))
+        self.X_st = tf.placeholder(tf.float32, shape=(tbs // 2, time_steps, num_input_vocabulary))
+        self.X_ts = tf.placeholder(tf.float32, shape=(tbs // 2, time_steps, num_input_vocabulary))
 
-        self.Y_st = tf.placeholder(tf.int32, shape=[tbs//2])
-        self.Y_ts = tf.placeholder(tf.int32, shape=[tbs//2])
+        self.Y_st = tf.placeholder(tf.int32, shape=[tbs // 2])
+        self.Y_ts = tf.placeholder(tf.int32, shape=[tbs // 2])
 
         self.Y_st_domain = tf.placeholder(tf.float32, shape=[tbs])
         self.Y_ts_domain = tf.placeholder(tf.float32, shape=[tbs])
@@ -285,7 +286,7 @@ def train_and_evaluate(training_mode, an_pha, rate_d, rate_mc, rate_con,
     saved_dir = "./dual_dan/" + 'model/' + str(an_pha) + '-' \
                 + str(rate_d) + '-' + str(rate_mc) + '-' + str(rate_con) + '-' + str(hidden_rnn) \
                 + '/'
-
+    model_start_time = time.time()
     if not os.path.exists(saved_dir):
         os.makedirs(saved_dir)
 
@@ -329,10 +330,10 @@ def train_and_evaluate(training_mode, an_pha, rate_d, rate_mc, rate_con,
               + '; hidden_rnn: ' + str(hidden_rnn))
 
         result_file.write('an_pha: ' + str(an_pha)
-                          + '; rate_d: ' + str(rate_d) + '; rate_mc: ' + str(rate_mc) 
+                          + '; rate_d: ' + str(rate_d) + '; rate_mc: ' + str(rate_mc)
                           + '; rate_con: ' + str(rate_con)
                           + '; hidden_rnn: ' + str(hidden_rnn)
-                          + '; time_steps: ' + str(time_steps) 
+                          + '; time_steps: ' + str(time_steps)
                           + '\n')
 
         # training loop
@@ -362,7 +363,7 @@ def train_and_evaluate(training_mode, an_pha, rate_d, rate_mc, rate_con,
                              model.mc_rate: rate_mc, model.con_rate: rate_con}
 
                 _, p_loss, d_src_loss, d_trg_loss, mc_src_loss, mc_trg_loss, con_src_loss, \
-                    con_trg_loss, ds_acc, dt_acc, p_acc = \
+                con_trg_loss, ds_acc, dt_acc, p_acc = \
                     sess.run([model.dan_train_op, model.prediction_loss, model.domain_src_loss,
                               model.domain_trg_loss,
                               model.mc_src_loss, model.mc_trg_loss,
@@ -387,8 +388,8 @@ def train_and_evaluate(training_mode, an_pha, rate_d, rate_mc, rate_con,
                     result_file.write('p_loss: %f; d_src_loss: %f; d_trg_loss: %f; '
                                       'mc_src_loss: %f; mc_trg_loss: %f; con_src_loss: %f; '
                                       'con_trg_loss: %f\n' % (p_loss, d_src_loss, d_trg_loss,
-                                                            mc_src_loss, mc_trg_loss,
-                                                            con_src_loss, con_trg_loss))
+                                                              mc_src_loss, mc_trg_loss,
+                                                              con_src_loss, con_trg_loss))
                     result_file.write('domain_source_acc: %f ; domain_target_acc: %f; prediction_acc: %f \n' %
                                       (ds_acc, dt_acc, p_acc))
 
@@ -429,32 +430,40 @@ def train_and_evaluate(training_mode, an_pha, rate_d, rate_mc, rate_con,
                     if h_value < trg_test_f1:
                         h_value = trg_test_f1
                         print('fpr: %.5f ; fnr: %.5f ; trg_test_acc: %.5f ; trg_test_pre: %.5f ; trg_test_f1: %.5f '
-                          '; trg_test_re: %.5f ; trg_test_auc: %.5f' % (fpr, fnr, trg_test_acc, trg_test_pre,
-                                                                        trg_test_f1, trg_test_re, trg_test_auc))
-                        result_file.write('fpr: %.5f ; fnr: %.5f ; trg_test_acc: %.5f ; trg_test_pre: %.5f ; trg_test_f1: %.5f '
-                          '; trg_test_re: %.5f ; trg_test_auc: %.5f \n' % (fpr, fnr, trg_test_acc, trg_test_pre,
-                                                                        trg_test_f1, trg_test_re, trg_test_auc))
-                        #save the best models into the corresponding path
-                        save_path = model.saver.save(sess, saved_dir+'/model.ckpt')
-                        print("Model saved in file: %s" % save_path)                                                
+                              '; trg_test_re: %.5f ; trg_test_auc: %.5f' % (fpr, fnr, trg_test_acc, trg_test_pre,
+                                                                            trg_test_f1, trg_test_re, trg_test_auc))
+                        result_file.write(
+                            'fpr: %.5f ; fnr: %.5f ; trg_test_acc: %.5f ; trg_test_pre: %.5f ; trg_test_f1: %.5f '
+                            '; trg_test_re: %.5f ; trg_test_auc: %.5f \n' % (fpr, fnr, trg_test_acc, trg_test_pre,
+                                                                             trg_test_f1, trg_test_re, trg_test_auc))
+                        # save the best models into the corresponding path
+                        save_path = model.saver.save(sess, saved_dir + '/model.ckpt')
+                        print("Model saved in file: %s" % save_path)
 
         if h_value != 0.0:
             high_values.append(h_value)
         print(high_values)
-        
+
         result_file.write('\ntesting results: ')
         for i_value in high_values:
             result_file.write('%f \t' % i_value)
         result_file.write('\n')
-
+    result_file.write("--- %s Training time:  ---" + str((time.time() - model_start_time)))
 
 print('dual domain adaptation training')
 
+
+list_an_pha = [-10.0, -9.0]
 list_rate_d = [0.01, 0.1, 0.5, 1.0]
 list_rate_mc = [0.001, 0.01, 0.1]
 list_rate_con = [0.001, 0.01, 0.1]
-list_an_pha = [-10.0, -9.0]
+
 list_hidden_rnn = [128, 256]
+
+
+
+
+start_time = time.time()
 
 for a_pha in list_an_pha:
     for l_rnn in list_hidden_rnn:
@@ -463,4 +472,7 @@ for a_pha in list_an_pha:
                 for r_con in list_rate_con:
                     train_and_evaluate('dual_dan', an_pha=a_pha,
                                        rate_d=r_d, rate_mc=r_mc,
+
                                        rate_con=r_con, hidden_rnn=l_rnn)
+print("\r\n")
+print("--- %s seconds ---" + str((time.time() - start_time)))
