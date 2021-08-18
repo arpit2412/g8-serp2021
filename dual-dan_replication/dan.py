@@ -195,7 +195,7 @@ def train_and_evaluate(training_mode, p_lr, p_d_rate, p_num_hidden, verbose=True
 
     result_file = open('./dan_save/' + 'model/' + str(today) + "_" + str(hour)
                        + '_domain_peg_png.txt', 'a+')
-
+    model_start_time = time.time()
     model = DomainModel(p_num_hidden)
 
     config = tf.ConfigProto()
@@ -312,6 +312,7 @@ def train_and_evaluate(training_mode, p_lr, p_d_rate, p_num_hidden, verbose=True
 
 
                     if t_f_1 > h_value:
+
                         h_value = t_f_1
                         if t_s_n_acc != 0 and t_s_v_acc != 0:
                             print('t_n_acc: %f; t_v_acc: %f' % (float(t_c_n_acc) / t_s_n_acc, float(t_c_v_acc) / t_s_v_acc))
@@ -327,6 +328,7 @@ def train_and_evaluate(training_mode, p_lr, p_d_rate, p_num_hidden, verbose=True
                                                                                                   t_p, t_f_1))
 
 
+
         if h_value != 0.0:
             high_values.append(h_value)
         print(high_values)
@@ -335,7 +337,7 @@ def train_and_evaluate(training_mode, p_lr, p_d_rate, p_num_hidden, verbose=True
         for i_value in high_values:
             result_file.write('%f \t' % i_value)
         result_file.write('\n')
-
+    result_file.write("--- %s Training time:  ---" + str((time.time() - model_start_time)))
 
 
 print('Domain adaptation training')
@@ -343,8 +345,12 @@ print('Domain adaptation training')
 g_lr = [0.001]
 d_rate = [0.01, 0.1, 0.5, 1.0]
 list_num_hidden = [128, 256]
-
+start_time = time.time()
 for i_g_lr in g_lr:
     for i_d_rate in d_rate:
         for i_num_hidden in list_num_hidden:
             train_and_evaluate('dan', i_g_lr, i_d_rate, i_num_hidden)
+
+print("\r\n")
+print("--- %s seconds ---" + str((time.time() - start_time)))
+
