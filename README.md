@@ -37,15 +37,6 @@ TBA
 #### Results: 
 TBA<br /><br />
 
-### Deep Learning-Based Vulnerable Function Detection-A Benchmark 
-A data-driven method is devised using a 5-layer network architecture for transfer representation learning. A benchmarking framework is developed for building and testing deep-learning-based vulnerability detectors. The data set is collected from open-source software projects consisting of 1,471 vulnerable functions and 1,320 vulnerable files. Researchers can establish a vulnerability detection baseline system for the evaluation of different methods. 
-#### Paper: [https://link.springer.com/chapter/10.1007/978-3-030-41579-2_13](https://link.springer.com/chapter/10.1007/978-3-030-41579-2_13)
-#### Source code: [https://github.com/DanielLin1986/Function-level-Vulnerability-Detection](https://github.com/DanielLin1986/Function-level-Vulnerability-Detection)
-#### Tools:
-TBA
-#### Results: 
-TBA<br /><br />
-
 ## Validation Data
 
 ### SySeVR: A Framework for Using Deep Learning to Detect Software Vulnerabilities
