@@ -323,7 +323,6 @@ print("-----------------------------------------------")
 print("Start predicting....")
 
 # The 0 or 1 outputs. 0 means non-vulnerable and 1 means vulnerable.
-# predicted_classes = model.predict_classes(test_set_x, batch_size=BATCH_SIZE, verbose=2)
 predicted_classes=model.predict(test_set_x, batch_size=BATCH_SIZE, verbose=2)
 predicted_classes=np.argmax(predicted_classes,axis=1)
 
