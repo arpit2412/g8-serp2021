@@ -8,13 +8,13 @@ import pandas as pd
 import time
 import csv
 
-from keras.preprocessing import sequence
-from keras.models import Sequential
-from keras.layers import Dense, Dropout
-from keras.layers import Embedding, Bidirectional
-from keras.layers import LSTM
-from keras.callbacks import ModelCheckpoint, EarlyStopping
-from keras import backend as K
+from tensorflow.keras.preprocessing import sequence
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout
+from tensorflow.keras.layers import Embedding, Bidirectional
+from tensorflow.keras.layers import LSTM
+from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
+from tensorflow.keras import backend as K
 
 import tensorflow as tf
 from tensorflow import keras
@@ -28,7 +28,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 script_start_time = time.time()
 
-working_dir = "csv data file path"
+working_dir = ""
 print ("Script starts at: " + str(script_start_time))
 
 
@@ -66,12 +66,19 @@ def storeOuput(arr, path):
         wr = csv.writer(myfile)
         wr.writerow(arr)
 
-train_set_x = getData(working_dir + 'train_vlc_cm.csv')
-train_set_id = getData(working_dir + 'train_vlc_id.csv')
+# train_set_x = getData(working_dir + 'ffmpeg.csv')
+# train_set_id = getData(working_dir + 'ffmpeg_id.csv')
+# test_set_x = getData(working_dir + 'libpng.csv')
+# test_set_id = getData(working_dir + 'libpng_id.csv')
 
-test_set_x = getData(working_dir + 'test_vlc_cm.csv')
-test_set_id = getData(working_dir + 'test_vlc_id.csv')
+train_set_x = getData(working_dir + 'ffmpeg.csv')
+train_set_id = getData(working_dir + 'ffmpeg_id.csv')
 
+# test_set_x = getData(working_dir + 'ffmpeg.csv')
+# test_set_id = getData(working_dir + 'ffmpeg_id.csv')
+
+test_set_x = getData(working_dir + 'tiff+png.csv')
+test_set_id = getData(working_dir + 'tiff+png_id.csv')
 
 train_set_id = np.ndarray.flatten(np.asarray(train_set_id))
 test_set_id = np.ndarray.flatten(np.asarray(test_set_id))
@@ -106,7 +113,7 @@ param_grid = {'max_depth': [3,4,5,6,10,15,20],
 
 # 3. Start training the RF model
 #--------------------------------------------
-clf = GridSearchCV(RandomForestClassifier(), param_grid=param_grid, n_jobs=6, verbose=10)
+clf = GridSearchCV(RandomForestClassifier(), param_grid=param_grid, n_jobs=9, verbose=10)
 clf = clf.fit(train_set_x, train_set_y)
 
 print("best estimator found by grid search:")
