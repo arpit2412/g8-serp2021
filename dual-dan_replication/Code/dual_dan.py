@@ -3,6 +3,7 @@ from flip_gradient import flip_gradient
 from units_all import *
 import time
 from sklearn import metrics as mt
+import os
 import scipy.io as io
 
 opt_type = 'adam'
@@ -17,6 +18,7 @@ class_labels = 2
 domain_labels = 1
 hidden_dnn = 300
 max_gradient_norm = 1.0
+num_steps = 150
 
 today = time.strftime('%Y%m%d')
 hour = time.strftime('%h')
@@ -50,7 +52,7 @@ class DomainModel(object):
             biases_st = bias_variable([self.dense_output])
             if cell_type == 'lstm':
                 if num_layers > 1:
-                    # define rnn cells with tensor_flow
+                    # define rnn-cell with tensor_flow
                     # forward direction cell
                     fw_cell_st = tf.contrib.rnn.MultiRNNCell([rnn.LSTMCell(self.hidden_rnn)
                                                               for _ in range(num_layers)])
@@ -84,7 +86,7 @@ class DomainModel(object):
                     # backward direction cell
                     bw_cell_st = rnn.BasicRNNCell(self.hidden_rnn)
 
-            # get rnn cell output
+            # get rnn-cell outputs
             l_outputs_st, a_st, b_st = rnn.static_bidirectional_rnn(fw_cell_st, bw_cell_st,
                                                                     x, dtype=tf.float32)
             l_outputs_st = tf.transpose(tf.stack(l_outputs_st, axis=0), perm=[1, 0, 2])
@@ -116,11 +118,11 @@ class DomainModel(object):
 
         tf.reset_default_graph()
 
-        self.X_st = tf.placeholder(tf.float32, shape=(tbs//2, time_steps, num_input_vocabulary))
-        self.X_ts = tf.placeholder(tf.float32, shape=(tbs//2, time_steps, num_input_vocabulary))
+        self.X_st = tf.placeholder(tf.float32, shape=(tbs // 2, time_steps, num_input_vocabulary))
+        self.X_ts = tf.placeholder(tf.float32, shape=(tbs // 2, time_steps, num_input_vocabulary))
 
-        self.Y_st = tf.placeholder(tf.int32, shape=[tbs//2])
-        self.Y_ts = tf.placeholder(tf.int32, shape=[tbs//2])
+        self.Y_st = tf.placeholder(tf.int32, shape=[tbs // 2])
+        self.Y_ts = tf.placeholder(tf.int32, shape=[tbs // 2])
 
         self.Y_st_domain = tf.placeholder(tf.float32, shape=[tbs])
         self.Y_ts_domain = tf.placeholder(tf.float32, shape=[tbs])
@@ -272,14 +274,21 @@ class DomainModel(object):
             self.saver = tf.train.Saver(tf.global_variables(), max_to_keep=150)
 
 
-_, _, target_test, target_test_labels = read_data(time_steps, sen_len, False)
+source_train, source_train_labels, source_test, source_test_labels = read_data(time_steps, sen_len, True)
+target_train, target_train_labels, target_test, target_test_labels = read_data(time_steps, sen_len, False)
+high_values = []
 
 
-def train_and_evaluate():
+def train_and_evaluate(training_mode, an_pha, rate_d, rate_mc, rate_con,
+                       hidden_rnn, verbose=True):
     """helper to run the model with different training modes."""
-    hidden_rnn = 128  # the size of the lstm hidden state corresponding to the best trained model
 
-    saved_dir = "./dual_dan_model/" + 'dual_dan_peg_png/'  # the directory stores the best trained model obtained from running dual_dan_HG.py file
+    saved_dir = "your_local_path/dual-dan_replication/Data/dual_dan_model_save" + 'model/' + str(an_pha) + '-' \
+                + str(rate_d) + '-' + str(rate_mc) + '-' + str(rate_con) + '-' + str(hidden_rnn) \
+                + '/'
+    model_start_time = time.time()
+    if not os.path.exists(saved_dir):
+        os.makedirs(saved_dir)
 
     model = DomainModel(hidden_rnn)
 
@@ -287,7 +296,6 @@ def train_and_evaluate():
     config.gpu_options.allow_growth = True
 
     with tf.Session(config=config) as sess:
-
         # check whether we have the model trained or not
         check_point = tf.train.get_checkpoint_state(saved_dir)
         if check_point and tf.train.checkpoint_exists(check_point.model_checkpoint_path):
@@ -298,58 +306,176 @@ def train_and_evaluate():
             print("create the model with fresh parameters")
             sess.run(model.init)
 
+        # batch generators
+        gen_source_batch = batch_generator([source_train, source_train_labels], int(tbs // 2))
+        gen_target_batch = batch_generator([target_train, target_train_labels], int(tbs // 2))
+
+        source_test_values = get_data_values(source_test, num_input_vocabulary)
+        gen_source_test_batch = batch_generator([source_test_values, source_test_labels], int(tbs // 2))
+        s_size = int(source_test.shape[0] // (tbs // 2))
+
         target_test_values = get_data_values(target_test, num_input_vocabulary)
         gen_target_test_batch = batch_generator([target_test_values, target_test_labels], int(tbs // 2))
         t_size = int(target_test.shape[0] // (tbs // 2))
+        h_value = 0.0
 
-        result_file = open('./dual_dan_model/' + 'dual_dan_peg_png.txt', 'a+')
+        y_ds_labels = np.concatenate(([np.tile([0], [int(tbs // 2)]), np.tile([1], [int(tbs // 2)])]))
+        y_dt_labels = np.concatenate(([np.tile([1], [int(tbs // 2)]), np.tile([0], [int(tbs // 2)])]))
 
-        # for target
-        full_y_predict_train = np.array([])
-        full_y_target_train = np.array([])
+        #save the terminal record into .txt file
+        result_file = open('your_local_path/dual-dan_replication/Data/dual_dan_model_save/' + 'model/' + str(today) + "_" + str(hour) + '_'
+                           + str(num_input_vocabulary) + '_dual_dan.txt', 'a+')
 
-        for t_target in range(t_size):
-            batch_x, batch_y = gen_target_test_batch.__next__()
-            batch_y = convert_to_int(batch_y)
+        print('an_pha: ' + str(an_pha)
+              + '; rate_d: ' + str(rate_d) + '; rate_mc: ' + str(rate_mc) + '; rate_con: ' + str(rate_con)
+              + '; hidden_rnn: ' + str(hidden_rnn))
 
-            full_y_target_train = np.append(full_y_target_train, batch_y)
+        result_file.write('an_pha: ' + str(an_pha)
+                          + '; rate_d: ' + str(rate_d) + '; rate_mc: ' + str(rate_mc)
+                          + '; rate_con: ' + str(rate_con)
+                          + '; hidden_rnn: ' + str(hidden_rnn)
+                          + '; time_steps: ' + str(time_steps)
+                          + '\n')
 
-            t_l_lb_prediction = sess.run(model.lb_prediction_st, feed_dict={model.X_st: batch_x,
-                                                                            model.Y_st: batch_y})
+        # training loop
+        for i_step in range(num_steps):
 
-            full_y_predict_train = np.append(full_y_predict_train, t_l_lb_prediction)
+            p = float(i_step) / 10000
+            ld = -1 + 2.0 / (1 + np.exp(-10.0 * p))
 
-        trg_test_acc = mt.accuracy_score(y_true=full_y_target_train, y_pred=full_y_predict_train)
-        trg_test_pre = mt.precision_score(y_true=full_y_target_train, y_pred=full_y_predict_train)
-        trg_test_f1 = mt.f1_score(y_true=full_y_target_train, y_pred=full_y_predict_train)
-        trg_test_re = mt.recall_score(y_true=full_y_target_train, y_pred=full_y_predict_train)
-        trg_test_auc = mt.roc_auc_score(y_true=full_y_target_train, y_score=full_y_predict_train)
+            lr = 0.001 / (1. + 10 * p) ** 0.75
+            sigma_kernel = np.power(2.0, an_pha)
 
-        tn, fp, fn, tp = mt.confusion_matrix(y_true=full_y_target_train,
-                                             y_pred=full_y_predict_train).ravel()
+            if training_mode == 'dual_dan':
 
-        if (fp + tn) == 0:
-            fpr = -1.0
-        else:
-            fpr = float(fp) / (fp + tn)
+                x0, y0 = gen_source_batch.__next__()
+                x1, y1 = gen_target_batch.__next__()
 
-        if (tp + fn) == 0:
-            fnr = -1.0
-        else:
-            fnr = float(fn) / (tp + fn)
+                x_0 = get_data_values(x0, num_input_vocabulary)
+                x_1 = get_data_values(x1, num_input_vocabulary)
 
-        print('fpr: %.5f ; fnr: %.5f ; trg_test_acc: %.5f ; trg_test_pre: %.5f ; trg_test_f1: %.5f '
-              '; trg_test_re: %.5f ; trg_test_auc: %.5f' % (fpr, fnr, trg_test_acc, trg_test_pre, trg_test_f1,
-                                                            trg_test_re, trg_test_auc))
+                feed_dict = {model.X_st: x_0, model.Y_st: y0,
+                             model.X_ts: x_1, model.Y_ts: y1,
+                             model.Y_st_domain: y_ds_labels,
+                             model.Y_ts_domain: y_dt_labels,
+                             model.ld: ld,
+                             model.learning_rate: lr, model.sigma_kernel: sigma_kernel,
+                             model.d_rate: rate_d,
+                             model.mc_rate: rate_mc, model.con_rate: rate_con}
 
-        result_file.write("fpr: %.5f; " % fpr)
-        result_file.write("fnr: %.5f; " % fnr)
-        result_file.write("trg_test_acc: %.5f; " % trg_test_acc)
-        result_file.write("trg_test_pre: %.5f; " % trg_test_pre)
-        result_file.write("trg_test_f1: %.5f; " % trg_test_f1)
-        result_file.write("trg_test_re: %.5f; " % trg_test_re)
-        result_file.write("trg_test_auc: %.5f\n" % trg_test_auc)
+                _, p_loss, d_src_loss, d_trg_loss, mc_src_loss, mc_trg_loss, con_src_loss, \
+                con_trg_loss, ds_acc, dt_acc, p_acc = \
+                    sess.run([model.dan_train_op, model.prediction_loss, model.domain_src_loss,
+                              model.domain_trg_loss,
+                              model.mc_src_loss, model.mc_trg_loss,
+                              model.con_src_loss, model.con_trg_loss,
+                              model.domain_st_acc, model.domain_ts_acc, model.label_acc],
+                             feed_dict=feed_dict)
+
+                if str(mc_src_loss) == 'nan' or str(mc_trg_loss) == 'nan':
+                    break
+
+                if verbose and i_step % 1 == 0:
+
+                    print('epoch: ' + str(i_step))
+                    print('p_loss: %f; d_src_loss: %f; d_trg_loss: %f; '
+                          'mc_src_loss: %f; mc_trg_loss: %f; con_src_loss: %f; '
+                          'con_trg_loss: %f' % (p_loss, d_src_loss, d_trg_loss,
+                                                mc_src_loss, mc_trg_loss, con_src_loss, con_trg_loss))
+                    print('domain_source_acc: %f; domain_target_acc: %f ; prediction_acc: %f'
+                          % (ds_acc, dt_acc, p_acc))
+
+                    result_file.write('epoch: ' + str(i_step) + '\n')
+                    result_file.write('p_loss: %f; d_src_loss: %f; d_trg_loss: %f; '
+                                      'mc_src_loss: %f; mc_trg_loss: %f; con_src_loss: %f; '
+                                      'con_trg_loss: %f\n' % (p_loss, d_src_loss, d_trg_loss,
+                                                              mc_src_loss, mc_trg_loss,
+                                                              con_src_loss, con_trg_loss))
+                    result_file.write('domain_source_acc: %f ; domain_target_acc: %f; prediction_acc: %f \n' %
+                                      (ds_acc, dt_acc, p_acc))
+
+                    # for target
+                    full_y_predict_train = np.array([])
+                    full_y_target_train = np.array([])
+
+                    for t_target in range(t_size):
+                        batch_x, batch_y = gen_target_test_batch.__next__()
+                        batch_y = convert_to_int(batch_y)
+
+                        full_y_target_train = np.append(full_y_target_train, batch_y)
+
+                        t_l_lb_prediction = sess.run(model.lb_prediction_st, feed_dict={model.X_st: batch_x,
+                                                                                        model.Y_st: batch_y})
+
+                        full_y_predict_train = np.append(full_y_predict_train, t_l_lb_prediction)
+
+                    trg_test_acc = mt.accuracy_score(y_true=full_y_target_train, y_pred=full_y_predict_train)
+                    trg_test_pre = mt.precision_score(y_true=full_y_target_train, y_pred=full_y_predict_train)
+                    trg_test_f1 = mt.f1_score(y_true=full_y_target_train, y_pred=full_y_predict_train)
+                    trg_test_re = mt.recall_score(y_true=full_y_target_train, y_pred=full_y_predict_train)
+                    trg_test_auc = mt.roc_auc_score(y_true=full_y_target_train, y_score=full_y_predict_train)
+
+                    tn, fp, fn, tp = mt.confusion_matrix(y_true=full_y_target_train,
+                                                         y_pred=full_y_predict_train).ravel()
+
+                    if (fp + tn) == 0:
+                        fpr = -1.0
+                    else:
+                        fpr = float(fp) / (fp + tn)
+
+                    if (tp + fn) == 0:
+                        fnr = -1.0
+                    else:
+                        fnr = float(fn) / (tp + fn)
+
+                    if h_value < trg_test_f1:
+                        h_value = trg_test_f1
+                        print('fpr: %.5f ; fnr: %.5f ; trg_test_acc: %.5f ; trg_test_pre: %.5f ; trg_test_f1: %.5f '
+                              '; trg_test_re: %.5f ; trg_test_auc: %.5f' % (fpr, fnr, trg_test_acc, trg_test_pre,
+                                                                            trg_test_f1, trg_test_re, trg_test_auc))
+                        result_file.write(
+                            'fpr: %.5f ; fnr: %.5f ; trg_test_acc: %.5f ; trg_test_pre: %.5f ; trg_test_f1: %.5f '
+                            '; trg_test_re: %.5f ; trg_test_auc: %.5f \n' % (fpr, fnr, trg_test_acc, trg_test_pre,
+                                                                             trg_test_f1, trg_test_re, trg_test_auc))
+                        # save the best models into the corresponding path
+                        save_path = model.saver.save(sess, saved_dir + '/model.ckpt')
+                        print("Model saved in file: %s" % save_path)
+
+        if h_value != 0.0:
+            high_values.append(h_value)
+        print(high_values)
+
+        result_file.write('\ntesting results: ')
+        for i_value in high_values:
+            result_file.write('%f \t' % i_value)
+        result_file.write('\n')
+    # record the training time of one model 
+    result_file.write("--- %s Training time:  ---" + str((time.time() - model_start_time)))
+
+print('dual domain adaptation training')
 
 
-print('dual domain adaptation testing')
-train_and_evaluate()
+list_an_pha = [-10.0, -9.0]
+list_rate_d = [0.01, 0.1, 0.5, 1.0]
+list_rate_mc = [0.001, 0.01, 0.1]
+list_rate_con = [0.001, 0.01, 0.1]
+
+list_hidden_rnn = [128, 256]
+
+
+
+
+start_time = time.time()
+
+for a_pha in list_an_pha:
+    for l_rnn in list_hidden_rnn:
+        for r_d in list_rate_d:
+            for r_mc in list_rate_mc:
+                for r_con in list_rate_con:
+                    train_and_evaluate('dual_dan', an_pha=a_pha,
+                                       rate_d=r_d, rate_mc=r_mc,
+
+                                       rate_con=r_con, hidden_rnn=l_rnn)
+# record the training time of all models 
+print("\r\n")
+print("--- %s seconds ---" + str((time.time() - start_time)))
