@@ -17,12 +17,14 @@ def bias_variable(shape):
 
 def read_data(max_input_sequence_len, size_m_ins, is_source):
     if is_source:
-        data_non = './data_sets_numberized/peg_non.txt'
-        data_vul = './data_sets_numberized/peg_vul.txt'
+        #source dataset
+        data_non = 'your_local_path/dual-dan_replication/Data/data_sets_numberized/peg_non.txt'
+        data_vul = 'your_local_path/dual-dan_replication/Data/data_sets_numberized/peg_vul.txt'
         tr_te_size = 0.8
     else:
-        data_non = './data_sets_numberized/png_non.txt'
-        data_vul = './data_sets_numberized/png_vul.txt'
+        #target dataset
+        data_non = 'your_local_path/dual-dan_replication/Data/data_sets_numberized/png_non.txt'
+        data_vul = 'your_local_path/dual-dan_replication/Data/data_sets_numberized/png_vul.txt'
         tr_te_size = 0.8
 
     inputs_non = []
