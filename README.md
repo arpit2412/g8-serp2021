@@ -2,7 +2,7 @@
 
 This project explores evaluating various deep learning-based cross-project vulnerability detection methods. Methods from different research papers will be replicated to provide a baseline for our evaluation framework. Our framework will be reproducible and can be adopted into future research for determining the optimum vulnerability detection method. Research papers(scope), source code, and feature extraction tools will be provided within this repository.<br /><br />
 
-## Papers Replicated/scope
+## Papers Replicated/Scope
 ### POSTER: Vulnerability Discovery with Function Representation Learning from Unlabeled Projects 
 This project explores using function-level vulnerability discovery within a cross-project scope. The AST representation will be the training data used for a bidirectional LSTM neural network. Typical Recurrent neural networks have difficulties in capturing long-term dependencies regarding continuous and fragment elements associated with vulnerability therefore the method combines RNN with LSTM cells to handle the vulnerabilities with long-term dependencies spanning multiple lines of code. The function level representation model machine learning model has demonstrated significant performance gains
 #### Paper: [https://dl.acm.org/doi/abs/10.1145/3133956.3138840](https://dl.acm.org/doi/abs/10.1145/3133956.3138840)
@@ -18,6 +18,20 @@ CodeSensor is a robust code to Abstract Syntax Tree(AST) parser implemented by b
 <b>Source:</b> [https://github.com/fabsx00/codesensor](https://github.com/fabsx00/codesensor)<br /><br />
 #### Results: <br /><br />
 ![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/Paper%20Replication%20Attempt%20Results/POSTER%20Vulnerability%20Discovery%20with%20Function%20Representation%20Learning%20from%20Unlabeled%20Projects/results.png)<br /><br />
+
+
+
+## Papers Replicated/Scope
+### Dual-component Deep domain Adaptation: A New Approach for Cross Project Software Vulnerability Detection
+To address the issue concerning the scarcity of labeled vulnerabilities in data sets used for software vulnerability detection, a deep domain adaptation soltuion is proposed. Using deep domain adaptation labelled vulnerability representations from a source dataset could be transfered to an unlabelled target dataset. this paper proposes an Dual Generator-Discriminator Deep Code Domain Adaptation Network (Dual-GD-DDAN) architecture for handling transfer learning from a labelled source to unlabelled target dataset.
+#### Paper: [https://link.springer.com/chapter/10.1007/978-3-030-47426-3_54](https://link.springer.com/chapter/10.1007/978-3-030-47426-3_54)
+#### Source code: [https://github.com/vannguyennd/dual-dan?fbclid=IwAR2fcuVwPvZlCtvUY3c_Bis0q6NND1jl5GS5UUMxvR9shOlef0doDzRUENk](https://github.com/vannguyennd/dual-dan?fbclid=IwAR2fcuVwPvZlCtvUY3c_Bis0q6NND1jl5GS5UUMxvR9shOlef0doDzRUENk)
+#### Tools:
+
+### CodeSensor (version 0.2)
+CodeSensor is a robust code to Abstract Syntax Tree(AST) parser implemented by based on the concept of island grammars.<br />
+<b>Source:</b> [https://github.com/fabsx00/codesensor](https://github.com/fabsx00/codesensor)<br /><br />
+#### Results: <br /><br />
 
 ## Validation Data
 
