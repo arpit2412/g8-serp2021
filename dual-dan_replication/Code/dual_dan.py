@@ -283,7 +283,7 @@ def train_and_evaluate(training_mode, an_pha, rate_d, rate_mc, rate_con,
                        hidden_rnn, verbose=True):
     """helper to run the model with different training modes."""
 
-    saved_dir = "../Data/dual_dan_model_save" + 'model/' + str(an_pha) + '-' \
+    saved_dir = "../Data/dual_dan_model_save/" + 'model/' + str(an_pha) + '-' \
                 + str(rate_d) + '-' + str(rate_mc) + '-' + str(rate_con) + '-' + str(hidden_rnn) \
                 + '/'
     model_start_time = time.time()
