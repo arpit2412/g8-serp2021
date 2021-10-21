@@ -279,7 +279,7 @@ def train_and_evaluate():
     """helper to run the model with different training modes."""
     hidden_rnn = 128  # the size of the lstm hidden state corresponding to the best trained model
 
-    saved_dir = "your_local_path/dual-dan_replication/Data/dual_dan_model/" + 'dual_dan_predict_model/'  # the directory stores the best trained model obtained from running dual_dan.py file
+    saved_dir = "../Data/dual_dan_model/" + 'dual_dan_predict_model/'  # the directory stores the best trained model obtained from running dual_dan.py file
 
     model = DomainModel(hidden_rnn)
 
@@ -302,7 +302,7 @@ def train_and_evaluate():
         gen_target_test_batch = batch_generator([target_test_values, target_test_labels], int(tbs // 2))
         t_size = int(target_test.shape[0] // (tbs // 2))
 
-        result_file = open('your_local_path/dual-dan_replication/Data/dual_dan_model/' + 'dual_dan_predict_model_result.txt', 'a+')
+        result_file = open('../Data/dual_dan_model/' + 'dual_dan_predict_model_result.txt', 'a+')
 
         # for target
         full_y_predict_train = np.array([])
