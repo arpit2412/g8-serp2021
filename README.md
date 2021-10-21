@@ -19,24 +19,6 @@ CodeSensor is a robust code to Abstract Syntax Tree(AST) parser implemented by b
 #### Results: <br /><br />
 ![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/Paper%20Replication%20Attempt%20Results/POSTER%20Vulnerability%20Discovery%20with%20Function%20Representation%20Learning%20from%20Unlabeled%20Projects/results.png)<br /><br />
 
-### Software Vulnerability Discovery via Learning Multi-domain Knowledge Bases 
-A framework is proposed to address the underlying issues regarding automated vulnerability discovery. The framework incorporates transferable knowledge from preexisting data sources that could be applied to real-world vulnerability detection. The method addresses the issue regarding the shortage of labeled data for model training by using cross-domain vulnerability relevant data from past vulnerabilities from multiple open source projects and Software Assurance Reference Database (SARD) with examples of artificial vulnerabilities samples.  2 LSTM networks will be used from training each type of data set independently and the separate representation will be combined and trained using a random forest classifier to enhance detection capabilities.  
-#### Paper: [https://ieeexplore.ieee.org/abstract/document/8906156](https://ieeexplore.ieee.org/abstract/document/8906156)
-#### Source code: [https://github.com/DanielLin1986/RepresentationsLearningFromMulti_domain](https://github.com/DanielLin1986/RepresentationsLearningFromMulti_domain)
-#### Tools:
-TBA
-#### Results: 
-TBA<br /><br />
-
-### Cross-project transfer representation learning for vulnerable function discovery 
-A data-driven method for transfer learning in vulnerability discovery is used to derive an optimal balance between feature quantity and the degree of generalizability. Code semantics are obtained from a serialized AST data representation of vulnerable and non-vulnerable source code. The AST is used as training data for a bidirectional LSTM deep learning classifier to obtain a model representation of software vulnerabilities. Data is collected from 6 open-source projects. A framework is developed for evaluating 6 neural network models. Top-K percentage Precision is used as performance metrics. 
-#### Paper: [https://ieeexplore.ieee.org/abstract/document/8329207](https://ieeexplore.ieee.org/abstract/document/8329207)
-#### Source code: [https://github.com/DanielLin1986/TransferRepresentationLearning](https://github.com/DanielLin1986/TransferRepresentationLearning)
-#### Tools:
-TBA
-#### Results: 
-TBA<br /><br />
-
 ## Validation Data
 
 ### SySeVR: A Framework for Using Deep Learning to Detect Software Vulnerabilities
