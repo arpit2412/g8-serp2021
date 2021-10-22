@@ -5,7 +5,7 @@
 ### LSTM Method:
 
 `$ py LSTM.py` <br>
-.This function will use numerical vectors from the folder data/CSV_data to train and test the LSTM model.
+This function will use numerical vectors from the folder data/CSV_data to train and test the LSTM model. <br>
 Before executing the function, please set up the working directory route and set up the numerical vectors .csv file as input. <br> As for output, set up a directory for saving models and outputs.
 
 ### Dependencies:
