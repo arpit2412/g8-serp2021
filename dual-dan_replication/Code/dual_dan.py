@@ -283,7 +283,7 @@ def train_and_evaluate(training_mode, an_pha, rate_d, rate_mc, rate_con,
                        hidden_rnn, verbose=True):
     """helper to run the model with different training modes."""
 
-    saved_dir = "your_local_path/dual-dan_replication/Data/dual_dan_model_save" + 'model/' + str(an_pha) + '-' \
+    saved_dir = "../Data/dual_dan_model_save/" + 'model/' + str(an_pha) + '-' \
                 + str(rate_d) + '-' + str(rate_mc) + '-' + str(rate_con) + '-' + str(hidden_rnn) \
                 + '/'
     model_start_time = time.time()
@@ -323,7 +323,7 @@ def train_and_evaluate(training_mode, an_pha, rate_d, rate_mc, rate_con,
         y_dt_labels = np.concatenate(([np.tile([1], [int(tbs // 2)]), np.tile([0], [int(tbs // 2)])]))
 
         #save the terminal record into .txt file
-        result_file = open('your_local_path/dual-dan_replication/Data/dual_dan_model_save/' + 'model/' + str(today) + "_" + str(hour) + '_'
+        result_file = open('../Data/dual_dan_model_save/' + 'model/' + str(today) + "_" + str(hour) + '_'
                            + str(num_input_vocabulary) + '_dual_dan.txt', 'a+')
 
         print('an_pha: ' + str(an_pha)

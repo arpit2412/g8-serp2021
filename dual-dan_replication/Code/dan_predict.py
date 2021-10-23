@@ -185,8 +185,8 @@ def train_and_evaluate():
 
     p_num_hidden = 256  # the size of the lstm hidden state corresponding to the best trained model
 
-    saved_dir = "./dan_model/" + 'dan_peg_png/'  # the directory stores the best trained model obtained from running dan.py file
-    result_file = open('./dan_model/' + 'dan_peg_png.txt', 'a+')
+    saved_dir = "../Data/dan_model/" + 'dan_predict_model/'  # the directory stores the best trained model obtained from running dan.py file
+    result_file = open('../Data/dan_model/' + 'dan_predict_model_result.txt', 'a+')
 
     model = DomainModel(p_num_hidden)
 
