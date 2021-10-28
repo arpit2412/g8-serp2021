@@ -5,11 +5,11 @@
 ### DUAL-DAN Method:
  
 `$ py dual_dan.py` <br>
-This function will use numerical vectors from the folder ./data/CSV_data for training and model generation<br>
-The resulting model will be save in folder ./dan_save/model/<br>
+This function will use numerical vectors from the folder ./data/Preprocessed_data for training and model generation<br>
+The resulting model will be save in folder ./data/dual_dan_model_save/model/<br>
  
 `$ py dual_dan_predict.py` <br>
-This function will evaluate the model saved in folder ./dan_save/model/ and save the results in ./dan_model/dan_peg_png/<br>
+This function will evaluate the selected best performance model saved in folder ./data/dual_dan_model/dual_dan_predict_model/ and save the results in ./data/dual_dan_model/dual_dan_predict_model_result.txt<br>
  
  
 ### Dependencies:
