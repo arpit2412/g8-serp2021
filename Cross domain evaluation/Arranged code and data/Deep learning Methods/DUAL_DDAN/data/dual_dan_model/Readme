@@ -1,0 +1,6 @@
+Instruction
+1. Please copy and paste the best Dual-DDAN Model files into the "dual_dan_predict_model" folder
+2. Run "dual_dan_predict.py" will reload the model and generate the performance of the model
+3. The performance record will be saved in the "dual_dan_predict_model_result.txt" 
+
+Notice: The hidden rnn number (128,256) of the model must be the same with "dual_dan_predict.py" hidden rnn number 
