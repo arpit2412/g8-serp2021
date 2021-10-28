@@ -189,11 +189,11 @@ high_values = []
 def train_and_evaluate(training_mode, p_lr, p_d_rate, p_num_hidden, verbose=True):
     """helper to run the model with different training modes."""
 
-    saved_dir = "./dan_save/" + 'model/' + str(p_lr) + '-' + str(p_d_rate) + '-' + str(p_num_hidden) + '/'
+    saved_dir = "../Data/dan_model_save/" + 'model/' + str(p_lr) + '-' + str(p_d_rate) + '-' + str(p_num_hidden) + '/'
     if not os.path.exists(saved_dir):
         os.makedirs(saved_dir)
-
-    result_file = open('./dan_save/' + 'model/' + str(today) + "_" + str(hour)
+    #save the terminal record into .txt file
+    result_file = open('../Data/dan_model_save/' + 'model/' + str(today) + "_" + str(hour)
                        + '_domain_peg_png.txt', 'a+')
     model_start_time = time.time()
     model = DomainModel(p_num_hidden)
