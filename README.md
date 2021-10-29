@@ -17,11 +17,9 @@ Understand is a commercial code enhancement tool for extracting function-level c
 CodeSensor is a robust code to Abstract Syntax Tree(AST) parser implemented by based on the concept of island grammars.<br />
 <b>Source:</b> [https://github.com/fabsx00/codesensor](https://github.com/fabsx00/codesensor)<br /><br />
 #### Results: <br /><br />
-![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/Poster_replication/paper%20replication%20attempt%20results/POSTER%20Vulnerability%20Discovery%20with%20Function%20Representation%20Learning%20from%20Unlabeled%20Projects/results.png)<br /><br />
+![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/Poster_replication/paper%20replication%20attempt%20results/POSTER%20Vulnerability%20Discovery%20with%20Function%20Representation%20Learning%20from%20Unlabeled%20Projects/results.png)<br /><br /><br />
 
 
-
-## Papers Replicated/Scope
 ### Dual-component Deep domain Adaptation: A New Approach for Cross Project Software Vulnerability Detection
 To address the issue concerning the scarcity of labeled vulnerabilities in data sets used for software vulnerability detection, a deep domain adaptation soltuion is proposed. Using deep domain adaptation labelled vulnerability representations from a source dataset could be transfered to an unlabelled target dataset. this paper proposes an Dual Generator-Discriminator Deep Code Domain Adaptation Network (Dual-GD-DDAN) architecture for handling transfer learning from a labelled source to unlabelled target dataset.
 #### Paper: [https://link.springer.com/chapter/10.1007/978-3-030-47426-3_54](https://link.springer.com/chapter/10.1007/978-3-030-47426-3_54)
