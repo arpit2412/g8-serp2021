@@ -50,7 +50,7 @@ Joern will be utilized to analyze the source codes to get user-defined variables
 ![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/resource/system%20design.png)<br /><br />
 
 ## Architecture Design
-![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/resource/architecture%20design.png)<br /><br />
+![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/resource/architecture%20design2.png)<br /><br />
 
 ## Performance Metrics
 In order to compare the performance of each model horizontally, we introduced five performance metrics: FNR, FPR, Recall, Precision and F1-score. The parameters of these performance indicators can be calculated through the confusion matrix of the model.<br />
