@@ -32,9 +32,9 @@ To address the issue concerning the scarcity of labeled vulnerabilities in data 
 Joern will be utilized to analyze the source codes to get user-defined variables and functions.<br />
 <b>Source:</b> [https://joern.readthedocs.io/en/latest/]<br /><br />
 #### Results: <br /><br />
-![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/all_data_result.png)<br />
-![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/FPR_PERFORMANCE.png)<br />
-![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/F1_PERFORMANCE.png)<br />
+![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/DDAN_DUAL_DDAN_COMPARSION2.png)<br />
+![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/DDAN_DUAL_DDAN_COMPARSION1.png)<br />
+
 ## Validation Data
 
 ### SySeVR: A Framework for Using Deep Learning to Detect Software Vulnerabilities
@@ -51,3 +51,7 @@ Joern will be utilized to analyze the source codes to get user-defined variables
 ## System Design/Requirements
 ![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/resource/system%20design.png)<br /><br />
 
+## LSTM, RF, DDAN and Dual-DDAN performance results
+![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/all_data_result.png)<br />
+![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/FPR_PERFORMANCE.png)<br />
+![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/F1_PERFORMANCE.png)<br />
