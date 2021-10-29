@@ -28,11 +28,13 @@ To address the issue concerning the scarcity of labeled vulnerabilities in data 
 #### Source code: [https://github.com/vannguyennd/dual-dan?fbclid=IwAR2fcuVwPvZlCtvUY3c_Bis0q6NND1jl5GS5UUMxvR9shOlef0doDzRUENk](https://github.com/vannguyennd/dual-dan?fbclid=IwAR2fcuVwPvZlCtvUY3c_Bis0q6NND1jl5GS5UUMxvR9shOlef0doDzRUENk)
 #### Tools:
 
-### CodeSensor (version 0.2)
-CodeSensor is a robust code to Abstract Syntax Tree(AST) parser implemented by based on the concept of island grammars.<br />
-<b>Source:</b> [https://github.com/fabsx00/codesensor](https://github.com/fabsx00/codesensor)<br /><br />
+### joern 
+Joern will be utilized to analyze the source codes to get user-defined variables and functions.<br />
+<b>Source:</b> [https://joern.readthedocs.io/en/latest/]<br /><br />
 #### Results: <br /><br />
-
+![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/all_data_result.png)<br />
+![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/FPR_PERFORMANCE.png)<br />
+![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/F1_PERFORMANCE.png)<br />
 ## Validation Data
 
 ### SySeVR: A Framework for Using Deep Learning to Detect Software Vulnerabilities
