@@ -26,7 +26,7 @@ To address the issue concerning the scarcity of labeled vulnerabilities in data 
 #### Source code: [https://github.com/vannguyennd/dual-dan?fbclid=IwAR2fcuVwPvZlCtvUY3c_Bis0q6NND1jl5GS5UUMxvR9shOlef0doDzRUENk](https://github.com/vannguyennd/dual-dan?fbclid=IwAR2fcuVwPvZlCtvUY3c_Bis0q6NND1jl5GS5UUMxvR9shOlef0doDzRUENk)
 #### Tools:
 
-### joern 
+### joern - Data pre-processing tool for DDAN & Dual-DDAN
 Joern will be utilized to analyze the source codes to get user-defined variables and functions.<br />
 <b>Source:</b> [https://joern.readthedocs.io/en/latest/]<br /><br />
 #### Results: <br /><br />
