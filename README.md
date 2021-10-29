@@ -51,6 +51,20 @@ Joern will be utilized to analyze the source codes to get user-defined variables
 ## System Design/Requirements
 ![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/resource/system%20design.png)<br /><br />
 
+## Performance Metrics
+In order to compare the performance of each model horizontally, we introduced five performance metrics: FNR, FPR, Recall, Precision and F1-score. The parameters of these performance indicators can be calculated through the confusion matrix of the model.<br />
+FNR (False Negative Rate, best = 0): FNR represents that in the positive class, how many samples are predicted to be the negative class which is an error rate. In the project, the FNR demonstrates that the rate of non-vulnerable functions has been identified as vulnerable. <br />
+![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/FNR_Calc.png)<br />
+FPR (False Positive Rate, best = 0): FPR represents that in the negative class, how many samples are predicted to be a positive class which is an error rate. In the project, FPR represents that the rate of the vulnerable function has been identified as non-vulnerable. Therefore, it directly demonstrates the capability of the model to correctly find out the vulnerable functions. FPR is one of our key performance indicators.<br />
+![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/FPR_Calc.png)<br />
+Precision (best = 1): Model precision score represents the rate of the model correctly classifying the positive sample out of all the positive predictions made.<br />
+![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/Precision_Calc.png)<br />
+Recall (best = 1): Model recall score represents the model’s ability to correctly predict the positives out of actual positives. The higher the recall score, the better the machine learning model is at identifying both positive and negative classes.<br />
+![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/Recall_Calc.png)<br />
+F1-Score (best = 1): Model F1 score represents the model score as a function of precision and recall score. F1-score is a machine learning model performance metric that gives equal weight to both the Precision and Recall for measuring its performance in terms of accuracy. It’s often used as a single value that provides high-level information about the model’s output quality. Therefore, F1-score is one of our key performance indicators.<br />
+![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/F1_Calc.png)<br />
+
+
 ## LSTM, RF, DDAN and Dual-DDAN performance results
 ![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/all_data_result.png)<br />
 ![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/FPR_PERFORMANCE.png)<br />
