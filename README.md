@@ -49,6 +49,9 @@ Joern will be utilized to analyze the source codes to get user-defined variables
 ## System Design/Requirements
 ![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/resource/system%20design.png)<br /><br />
 
+## Architecture Design
+![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/resource/architecture%20design.png)<br /><br />
+
 ## Performance Metrics
 In order to compare the performance of each model horizontally, we introduced five performance metrics: FNR, FPR, Recall, Precision and F1-score. The parameters of these performance indicators can be calculated through the confusion matrix of the model.<br />
 FNR (False Negative Rate, best = 0): FNR represents that in the positive class, how many samples are predicted to be the negative class which is an error rate. In the project, the FNR demonstrates that the rate of non-vulnerable functions has been identified as vulnerable. <br />
