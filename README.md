@@ -26,6 +26,7 @@ To address the issue concerning the scarcity of labeled vulnerabilities in data 
 #### Source code: [https://github.com/vannguyennd/dual-dan?fbclid=IwAR2fcuVwPvZlCtvUY3c_Bis0q6NND1jl5GS5UUMxvR9shOlef0doDzRUENk](https://github.com/vannguyennd/dual-dan?fbclid=IwAR2fcuVwPvZlCtvUY3c_Bis0q6NND1jl5GS5UUMxvR9shOlef0doDzRUENk)
 #### Tools:
 
+<<<<<<< HEAD
 ### joern - Data pre-processing tool for DDAN & Dual-DDAN
 Joern will be utilized to analyze the source codes to get user-defined variables and functions.<br />
 <b>Source:</b> [https://joern.readthedocs.io/en/latest/]<br /><br />
@@ -33,6 +34,8 @@ Joern will be utilized to analyze the source codes to get user-defined variables
 ![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/DDAN_DUAL_DDAN_COMPARSION2.png)<br />
 ![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/DDAN_DUAL_DDAN_COMPARSION1.png)<br />
 
+=======
+>>>>>>> 8184095a04915d61b5114e1e7752aa4ecf878cb0
 ## Validation Data
 
 ### SySeVR: A Framework for Using Deep Learning to Detect Software Vulnerabilities
@@ -48,6 +51,7 @@ Joern will be utilized to analyze the source codes to get user-defined variables
 
 ## System Design/Requirements
 ![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/resource/system%20design.png)<br /><br />
+<<<<<<< HEAD
 
 ## Architecture Design
 ![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/resource/architecture%20design2.png)<br /><br />
@@ -70,3 +74,5 @@ F1-Score (best = 1): Model F1 score represents the model score as a function of 
 ![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/all_data_result.png)<br />
 ![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/FPR_PERFORMANCE.png)<br />
 ![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/wiki_images/F1_PERFORMANCE.png)<br />
+=======
+>>>>>>> 8184095a04915d61b5114e1e7752aa4ecf878cb0
