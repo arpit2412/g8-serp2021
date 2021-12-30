@@ -52,10 +52,3 @@ TBA<br /><br />
 
 ## System Design/Requirements
 ![screenshot](https://github.com/arpit2412/g8-serp2021/blob/main/resource/system%20design.png)<br /><br />
-
-## Future Work
-1. Our end goal is to finish replicating all methods from our scope. Our scope is expected to change as we may choose to add or remove research papers. We may eliminate papers from our scope where similarities in the underlying process are found to correspond with a different paper within our scope. We will add research papers based on their unique approach to project vulnerability detection.  
-
-2. For the replication of the first paper we used Top K to measure the accuracy of the deep learning method. Once all the research papers from within our scope have been successfully replicated we will establish evaluation criteria for measuring the performance and accuracy of our various models. 
-
-3. Lastly, once performance evaluation has been completed we will design a reusable framework so others could replicate our process and produce similar results. Our framework will contain an interface for submitting results therefore a comprehensive report could be generated for drawing comparisons between different models, allowing careful selection of the most optimal vulnerability detection method.
